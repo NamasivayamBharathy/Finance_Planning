@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Planning Tool - Summary</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Quicksand:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('{{ url_for("static", filename="images/celebration.gif") }}');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: 'Quicksand', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            color: white;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            width: 90%;
+            max-width: 1000px;
+            height: 90vh; /* Adjust container height to fit the viewport */
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        .summary {
+            flex-grow: 1;
+            overflow: auto; /* Enable scroll if content exceeds container height */
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1); /* Slightly lighter background */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        button {
+            margin: 15px;
+            padding: 12px 25px;
+            font-size: 18px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hello, {{ username }}!</h1>
+        <p>Thank you for using our Financial Planning Tool. Below is your financial planning summary:</p>
+        <div class="summary">
+            <table>
+                {{ summary_html | safe }}
+            </table>
+        </div>
+        <div>
+            <a href="{{ url_for('retirement_plan', filename=output_path) }}">
+                <button>Retirement Plan</button>
+            </a>
+            <a href="{{ url_for('goals_plan', filename=output_path) }}">
+                <button>Goals Plan</button>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to the Financial Planning Tool</title>
+    
+    <!-- Add Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@600;700&family=Quicksand:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-image: url('{{ url_for("static", filename="images/worldgods.jpg") }}');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: 'Quicksand', sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        h1 {
+            color: #f50505; /* Bright red */
+            text-shadow: 2px 2px 10px #000000; /* Black shadow for depth */
+            font-family: 'Orbitron', sans-serif; /* AI-inspired font */
+            font-size: 4rem;
+            position: absolute;
+            top: 20px; /* Position at the top */
+            width: 100%;
+            text-align: center;
+            margin: 0;
+            -webkit-text-stroke: 2px #000000; /* Black outline for the text */
+        }
+        .start-button {
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent dark background */
+            color: #ff69b4; /* Vibrant pink */
+            padding: 15px 30px;
+            border: 2px solid #ff69b4; /* Add a border to make it stand out */
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 1.5rem; /* Slightly larger font for better visibility */
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            border-radius: 8px;
+            text-shadow: 1px 1px 4px #000; /* Black shadow for readability */
+            box-shadow: 0px 4px 12px rgba(255, 105, 180, 0.4); /* Pink glow effect */
+            position: absolute; /* Allows precise placement */
+            bottom: 30%; /* Fixed distance from the bottom */
+            left: 41%; /* Shift slightly to the left */
+        }
+
+
+        .start-button:hover {
+            background-color: #ff69b4; /* Bright pink background */
+            color: #ffffff; /* White text on hover */
+            box-shadow: 0px 6px 16px rgba(255, 105, 180, 0.8); /* Stronger pink glow */
+            transform: scale(1.05); /* Slight zoom-in effect on hover */
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the Financial Planning Tool</h1>
+    <a href="/input" class="start-button">Plan Your Financial Future</a>
+</body>
+</html>

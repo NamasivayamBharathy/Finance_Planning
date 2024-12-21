@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Planning Tool</title>
+    <style>
+        /* Add a background image to the body */
+        body {
+            background-image: url('{{ url_for("static", filename="images/Currency_note.jpg") }}');
+            background-size: cover; /* Ensures the image covers the entire page */
+            background-position: center; /* Centers the background image */
+            background-attachment: fixed; /* Keeps the background fixed when scrolling */
+            color: white; /* Set text color to white to ensure readability on the background */
+            font-family: Arial, sans-serif; /* Add a default font */
+        }
+
+        h1, h2, h3 {
+            text-align: center;
+        }
+
+        form {
+            background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background for the form */
+            padding: 20px;
+            border-radius: 8px;
+            width: 50%;
+            margin: auto;
+        }
+
+        label, input {
+            display: block;
+            margin-bottom: 10px;
+            width: 100%;
+            padding: 10px;
+        }
+
+        input[type="number"] {
+            width: 80%;
+            margin: 5px 0;
+        }
+
+        button {
+            background-color: #4CAF50; /* Green background for submit button */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <script>
+        function generateGoalFields() {
+            const numGoals = parseInt(document.getElementById("num_goals").value, 10);
+            const goalContainer = document.getElementById("goal_container");
+            goalContainer.innerHTML = ""; // Clear previous goals
+
+            for (let i = 1; i <= numGoals; i++) {
+                const goalSection = document.createElement("div");
+                goalSection.innerHTML = `
+                    <h3>Goal ${i} Details:</h3>
+                    <label>Enter target amount for Goal ${i} (in ₹):</label><br>
+                    <input type="number" name="goal_${i}_target" required><br><br>
+                    
+                    <label>Enter number of years to achieve Goal ${i}:</label><br>
+                    <input type="number" name="goal_${i}_years" required><br><br>
+                `;
+                goalContainer.appendChild(goalSection);
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>=== Financial Planning Tool ===</h1>
+
+    <form action="/submit" method="POST">
+        <h2>=== Personal Information ===</h2>
+        <label>Enter your name:</label><br>
+        <input type="text" name="user_name" required><br><br>
+
+        <label>Enter your current age:</label><br>
+        <input type="number" name="current_age" required><br><br>
+
+        <label>Enter your desired retirement age:</label><br>
+        <input type="number" name="retirement_age" required><br><br>
+
+        <label>Enter your current monthly expenses (in ₹):</label><br>
+        <input type="number" name="monthly_expenses" required><br><br>
+
+        <label>Enter your monthly in-hand salary (in ₹):</label><br>
+        <input type="number" name="monthly_salary" required><br><br>
+
+        <h2>=== Existing Corpus Information ===</h2>
+        <label>Enter your current PF corpus amount (in ₹) [Enter 0 if none]:</label><br>
+        <input type="number" name="pf_corpus" required><br><br>
+
+        <label>Enter your monthly PF contribution (in ₹):</label><br>
+        <input type="number" name="pf_contribution" required><br><br>
+
+        <label>Enter your current investment corpus amount (in ₹) [Enter 0 if none]:</label><br>
+        <input type="number" name="investment_corpus" required><br><br>
+
+        <h2>=== Financial Goals ===</h2>
+        <label>Enter the number of financial goals you have (1-10):</label><br>
+        <input type="number" id="num_goals" name="num_goals" min="1" max="10" required onchange="generateGoalFields()"><br><br>
+
+        <div id="goal_container"></div>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
